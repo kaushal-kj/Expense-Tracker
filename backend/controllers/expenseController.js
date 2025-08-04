@@ -3,7 +3,7 @@ import expenseModel from "../models/expenseSchema.js";
 const addExpense = async (req, res) => {
   const userId = req.user?.id;
 
-  const { title, amount, income, category, description, date } = req.body;
+  const { title, amount, expense, category, description, date } = req.body;
 
   const parsedAmount = Number(amount);
 
@@ -25,7 +25,7 @@ const addExpense = async (req, res) => {
       category,
       description,
       date,
-      income,
+      expense,
     });
 
     await newExpense.save();

@@ -30,10 +30,10 @@ const IncomeTransactions = () => {
                 <td>{transaction.title}</td>
                 <td>{transaction.category}</td>
                 <td>{new Date(transaction.date).toLocaleDateString()}</td>
-                <td className="p-4 text-right text-green-500 font-semibold">
+                <td className="p-4 text-left text-green-500 font-semibold">
                   $ {transaction.amount}
                 </td>
-                <td className="p-4 text-center">
+                <td className="p-4 text-left">
                   <button
                     title="Delete"
                     onClick={() => deleteIncome(transaction._id)}

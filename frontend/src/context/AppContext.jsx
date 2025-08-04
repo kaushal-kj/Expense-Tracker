@@ -13,7 +13,7 @@ const AppContextProvider = ({ children }) => {
   const [IncomeData, setIncomeData] = useState([]);
   const [token, setToken] = useState(Boolean(cookie.get("token")));
 
-  const backendUrl = import.meta.env.BACKEND_PORT;
+  const backendUrl = import.meta.env.VITE_BACKEND_PORT;
   const utoken = cookie.get("token");
 
   const fetchIncome = async () => {
@@ -111,7 +111,7 @@ const AppContextProvider = ({ children }) => {
   const addExpense = async (
     title,
     amount,
-    income,
+    expense,
     category,
     description,
     date
@@ -119,7 +119,7 @@ const AppContextProvider = ({ children }) => {
     try {
       const { data } = await axios.post(
         `${backendUrl}/api/user/add-expense`,
-        { title, amount, income, category, description, date },
+        { title, amount, expense, category, description, date },
         {
           headers: {
             Authorization: `Bearer ${utoken}`,

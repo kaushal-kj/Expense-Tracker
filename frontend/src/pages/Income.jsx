@@ -42,7 +42,7 @@ const Income = () => {
             value={formData.title}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-            placeholder="Enter expense title"
+            placeholder="Enter income title"
             required
           />
         </div>

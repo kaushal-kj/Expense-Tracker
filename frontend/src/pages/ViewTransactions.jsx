@@ -29,7 +29,7 @@ const ViewTransactions = () => {
                 <td>{new Date(transaction.date).toLocaleDateString()}</td>
                 <td>{transaction.type === "income" ? "Income" : "Expense"}</td>
                 <td
-                  className={`p-4 text-right font-semibold ${
+                  className={`p-4 text-left font-semibold ${
                     transaction.type === "income"
                       ? "text-green-500"
                       : "text-red-500"

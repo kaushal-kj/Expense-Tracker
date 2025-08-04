@@ -29,10 +29,10 @@ const ExpenseTransactions = () => {
                 <td>{transaction.title}</td>
                 <td>{transaction.category}</td>
                 <td>{new Date(transaction.date).toLocaleDateString()}</td>
-                <td className="p-4 text-right text-red-500 font-semibold">
+                <td className="p-4 text-left text-red-500 font-semibold">
                   $ {transaction.amount}
                 </td>
-                <td className="p-4 text-center">
+                <td className="p-4 text-left">
                   <button
                     onClick={() => deleteExpense(transaction._id)}
                     title="Delete"
