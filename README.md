@@ -126,23 +126,25 @@ The application will be available at `http://localhost:5173`
 
 ## 🗂️ Project Structure
 
-Expense-Tracker/ \
-├── backend/ \
-│ ├── controllers/ # Route controllers\
-│ ├── middleware/ # Authentication & validation middleware\
-│ ├── models/ # MongoDB schemas\
-│ ├── routes/ # Express routes\
-│ ├── utils/ # Utility functions\
-│ └── server.js # Main server file\
-├── frontend/\
-│ ├── public/ # Static files\
-│ ├── src/\
-│ │ ├── components/ # React components\
-│ │ ├── context/ # Context providers\
-│ │ ├── pages/ # Page components\
-│ │ ├── utils/ # Helper functions\
-│ │ └── App.js # Main App component\
-│ └── package.json\
+Expense-Tracker \
+├── backend\
+│   ├── config\
+│   ├── controllers\
+│   ├── middlewares\
+│   ├── models\
+│   ├── routes\
+│   └── server.js\
+├── frontend\
+│   ├── public\
+│   ├── src\
+│   │   ├── assets\
+│   │   ├── components\
+│   │   ├── context\
+│   │   ├── pages\
+│   │   ├── App.jsx\
+│   │   ├── index.css\
+│   │   └── main.jsx\
+│   └── index.html\
 └── README.md
 
 
