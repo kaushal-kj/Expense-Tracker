@@ -34,7 +34,7 @@ const AppContextProvider = ({ children }) => {
         setIncomeData(data.data);
       }
     } catch (error) {
-      console.log(error);
+      console.log("Unauthorized");
     }
   };
 
@@ -55,7 +55,7 @@ const AppContextProvider = ({ children }) => {
         setExpenseData(data.data);
       }
     } catch (error) {
-      console.log(error);
+      console.log("Unauthorized");
     }
   };
 
@@ -194,7 +194,6 @@ const AppContextProvider = ({ children }) => {
         }
       );
       if (data.success) {
-        console.log(data);
         cookie.set("token", data.token);
         setToken(true);
         fetchIncome();

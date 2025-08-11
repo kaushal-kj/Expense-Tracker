@@ -26,7 +26,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="bg-gradient-to-l from-black to-gray-700 w-full lg:w-64 lg:min-h-screen">
+    <div className="fixed bg-gradient-to-l from-black to-gray-700 w-full lg:w-64 lg:min-h-screen">
       {/* Logo */}
       <div className="mt-0 py-2 px-2">
         <img
