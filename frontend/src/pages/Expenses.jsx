@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Expenses = () => {
-  const { addExpense } = useContext(AppContext);
+  const { addExpense, token } = useContext(AppContext); // Get token from context
 
   const [formData, setFormData] = useState({
     title: "",
@@ -20,6 +20,13 @@ const Expenses = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check if user is authenticated before submitting
+    if (!token) {
+      alert("Please log in to add expense");
+      return;
+    }
+
     const amount = Number(formData.amount);
     addExpense(
       formData.title,
@@ -29,7 +36,35 @@ const Expenses = () => {
       formData.description,
       formData.date
     );
+
+    // Reset form after submission
+    setFormData({
+      title: "",
+      amount: "",
+      type: "",
+      category: "",
+      description: "",
+      date: "",
+    });
   };
+
+  // If user is not authenticated, show login message
+  if (!token) {
+    return (
+      <div className="mx-auto max-w-2xl md:mt-6 bg-white p-6 rounded-md shadow-md text-center">
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">
+          Authentication Required
+        </h2>
+        <p className="text-gray-600 mb-4">Please log in to add expense</p>
+        <button
+          onClick={() => (window.location.href = "/login")}
+          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        >
+          Go to Login
+        </button>
+      </div>
+    );
+  }
   return (
     <div className="mx-auto max-w-2xl md:mt-6 bg-white p-6 rounded-md shadow-md">
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">Add Expense</h1>

@@ -22,106 +22,125 @@ const SideBar = () => {
     setToken(false);
     navigate("/");
     cookie.remove("token");
+    window.location.reload();
   };
 
   return (
-    <div className="bg-gradient-to-l from-black to-gray-700 h-screen lg:w-64">
-      <div className="mt-3 py-2 px-2">
+    <div className="bg-gradient-to-l from-black to-gray-700 w-full lg:w-64 lg:min-h-screen">
+      {/* Logo */}
+      <div className="mt-0 py-2 px-2">
         <img
           src={logo}
           onClick={() => navigate("/")}
           alt="logo"
-          className="mt-1 w-64 hidden md:block "
+          className="mt-0 w-32 lg:w-64 hidden md:block cursor-pointer"
         />
       </div>
-      <div className="flex flex-row items-center lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 justify-center gap-5 py-2 px-2">
-        <NavLink
-          to={"/"}
-          className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
-        >
-          <GoGraph className="text-2xl text-white" />
-          <p className="text-lg font-semibold hidden md:block text-white">
-            Dashboard
-          </p>
-        </NavLink>
-      </div>
-      <div className="flex flex-row items-center lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 justify-center gap-5 py-2 px-2">
-        <NavLink
-          to={"/view-transaction"}
-          className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
-        >
-          <FaRegCreditCard className="text-2xl text-white" />
-          <p className="text-lg font-semibold hidden md:block text-white">
-            Transactions
-          </p>
-        </NavLink>
-      </div>
-      <div className="flex flex-row items-center lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 justify-center gap-5 py-2 px-2">
-        <NavLink
-          to={"/income-transactions"}
-          className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
-        >
-          <FaArrowsDownToLine className="text-2xl text-white" />
-          <p className="text-lg font-semibold hidden md:block text-white">
-            Income History
-          </p>
-        </NavLink>
-      </div>
-      <div className="flex flex-row items-center lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 justify-center gap-5 py-2 px-2">
-        <NavLink
-          to={"/expense-transactions"}
-          className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
-        >
-          <FaArrowsUpToLine className="text-2xl text-white" />
-          <p className="text-lg font-semibold hidden md:block text-white">
-            Expense History
-          </p>
-        </NavLink>
-      </div>
-      <div className="flex flex-row items-center lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 justify-center gap-5 py-2 px-2">
-        <NavLink
-          to={"/add-income"}
-          className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
-        >
-          <FaMoneyBillTrendUp className="text-2xl text-white" />
-          <p className="text-lg font-semibold hidden md:block text-white">
-            Income
-          </p>
-        </NavLink>
-      </div>
-      <div className="flex flex-row items-center lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 justify-center gap-5 py-2 px-2">
-        <NavLink
-          to={"/add-expense"}
-          className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
-        >
-          <GiExpense className="text-2xl text-white" />
-          <p className="text-lg font-semibold hidden md:block text-white">
-            Expense
-          </p>
-        </NavLink>
-      </div>
-      <div className="flex flex-row items-center lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 justify-center gap-5 py-2 px-2">
-        {token ? (
+
+      {/* Navigation Items */}
+      <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible">
+        {/* Dashboard */}
+        <div className="lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 mx-1 lg:mx-2 my-1 flex-shrink-0">
           <NavLink
-            onClick={handleLogout}
-            className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
+            to={"/"}
+            className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
           >
-            <IoLogOut className="text-2xl text-white" />
-            <p className="text-lg font-semibold hidden md:block text-white">
-              Logout
+            <GoGraph className="text-xl lg:text-2xl text-white flex-shrink-0" />
+            <p className="text-xs lg:text-lg font-semibold text-white text-center lg:text-left">
+              Dashboard
             </p>
           </NavLink>
-        ) : (
+        </div>
+
+        {/* Transactions */}
+        <div className="lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 mx-1 lg:mx-2 my-1 flex-shrink-0">
           <NavLink
-            to={"/login"}
-            className="w-full flex flex-row items-center justify-center gap-2 py-2 px-2 rounded-lg cursor-pointer"
+            to={"/view-transaction"}
+            className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
           >
-            <IoLogOut className="text-2xl text-white" />
-            <p className="text-lg font-semibold hidden md:block text-white">
-              Login
+            <FaRegCreditCard className="text-xl lg:text-2xl text-white flex-shrink-0" />
+            <p className="text-xs lg:text-lg font-semibold text-white text-center lg:text-left">
+              Transactions
             </p>
           </NavLink>
-        )}
+        </div>
+
+        {/* Income History */}
+        <div className="lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 mx-1 lg:mx-2 my-1 flex-shrink-0">
+          <NavLink
+            to={"/income-transactions"}
+            className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
+          >
+            <FaArrowsDownToLine className="text-xl lg:text-2xl text-white flex-shrink-0" />
+            <p className="text-xs lg:text-lg font-semibold text-white text-center lg:text-left">
+              Income
+            </p>
+          </NavLink>
+        </div>
+
+        {/* Expense History */}
+        <div className="lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 mx-1 lg:mx-2 my-1 flex-shrink-0">
+          <NavLink
+            to={"/expense-transactions"}
+            className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
+          >
+            <FaArrowsUpToLine className="text-xl lg:text-2xl text-white flex-shrink-0" />
+            <p className="text-xs lg:text-lg font-semibold text-white text-center lg:text-left">
+              Expense
+            </p>
+          </NavLink>
+        </div>
+
+        {/* Add Income */}
+        <div className="lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 mx-1 lg:mx-2 my-1 flex-shrink-0">
+          <NavLink
+            to={"/add-income"}
+            className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
+          >
+            <FaMoneyBillTrendUp className="text-xl lg:text-2xl text-white flex-shrink-0" />
+            <p className="text-xs lg:text-lg font-semibold text-white text-center lg:text-left">
+              Add Income
+            </p>
+          </NavLink>
+        </div>
+
+        {/* Add Expense */}
+        <div className="lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 mx-1 lg:mx-2 my-1 flex-shrink-0">
+          <NavLink
+            to={"/add-expense"}
+            className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
+          >
+            <GiExpense className="text-xl lg:text-2xl text-white flex-shrink-0" />
+            <p className="text-xs lg:text-lg font-semibold text-white text-center lg:text-left">
+              Add Expense
+            </p>
+          </NavLink>
+        </div>
+
+        {/* Login/Logout */}
+        <div className="lg:hover:bg-red-500 lg:border-none hover:border-l-2 border-red-500 mx-1 lg:mx-2 my-1 flex-shrink-0">
+          {token ? (
+            <div
+              onClick={handleLogout}
+              className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
+            >
+              <IoLogOut className="text-xl lg:text-2xl text-red-500 flex-shrink-0" />
+              <p className="text-xs lg:text-lg font-semibold text-red-500 text-center lg:text-left">
+                Logout
+              </p>
+            </div>
+          ) : (
+            <NavLink
+              to={"/login"}
+              className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 py-2 lg:py-3 px-2 lg:px-4 rounded-lg cursor-pointer"
+            >
+              <IoLogOut className="text-xl lg:text-2xl text-white flex-shrink-0" />
+              <p className="text-xs lg:text-lg font-semibold text-white text-center lg:text-left">
+                Login
+              </p>
+            </NavLink>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -16,15 +16,9 @@ import Register from "./pages/Register";
 const App = () => {
   const location = useLocation();
   const { token, fetchIncome, fetchExpense } = useContext(AppContext);
-  const hideMainLayout = [
-    "/view-transaction",
-    "/add-income",
-    "/add-expense",
-    "/income-transactions",
-    "/expense-transactions",
-    "/login",
-    "/register",
-  ].includes(location.pathname);
+
+  const mainLayoutRoutes = ["/"];
+  const isMainLayout = mainLayoutRoutes.includes(location.pathname);
 
   useEffect(() => {
     if (token) {
@@ -34,41 +28,51 @@ const App = () => {
   }, [token, location.pathname]);
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <ToastContainer />
-      <SideBar />
-      {!hideMainLayout ? (
-        <div className="flex flex-row w-full overflow-auto">
-          <div className="flex-1 w-1/2">
+
+      {/* Sidebar - Responsive */}
+      <div className="lg:w-64 lg:flex-shrink-0">
+        <SideBar />
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        {isMainLayout ? (
+          // Dashboard Layout: Stack on mobile, side by side on desktop
+          <>
+            <div className="flex-1 overflow-auto p-2 lg:p-4">
+              <Routes>
+                <Route path="/" element={<DashBoard />} />
+              </Routes>
+            </div>
+            <div className="w-full lg:w-1/3 hidden lg:block overflow-auto p-2 lg:p-4">
+              <Routes>
+                <Route path="/" element={<History />} />
+              </Routes>
+            </div>
+          </>
+        ) : (
+          // Full Width Layout: Other pages take full width
+          <div className="flex-1 overflow-auto p-2 lg:p-4">
             <Routes>
-              <Route path="/" element={<DashBoard />} />
+              <Route path="/view-transaction" element={<ViewTransactions />} />
+              <Route path="/add-income" element={<Income />} />
+              <Route path="/add-expense" element={<Expenses />} />
+              <Route
+                path="/income-transactions"
+                element={<IncomeTransactions />}
+              />
+              <Route
+                path="/expense-transactions"
+                element={<ExpenseTransactions />}
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Routes>
           </div>
-          <div className="flex-2 flex-col md:w-1/3 hidden lg:flex overflow-auto">
-            <Routes>
-              <Route path="/" element={<History />} />
-            </Routes>
-          </div>
-        </div>
-      ) : (
-        <div className="flex-1 max-h-screen w-full overflow-auto">
-          <Routes>
-            <Route path="/view-transaction" element={<ViewTransactions />} />
-            <Route path="/add-income" element={<Income />} />
-            <Route path="/add-expense" element={<Expenses />} />
-            <Route
-              path="/income-transactions"
-              element={<IncomeTransactions />}
-            />
-            <Route
-              path="/expense-transactions"
-              element={<ExpenseTransactions />}
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
